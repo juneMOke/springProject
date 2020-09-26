@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Person List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>Number List</h1>
+<a href="registerNumber"> Enter Number</a>
+<br/><br/>
+<div>
+    <table border="1">
+        <tr>
+            <th>Number Value</th>
+            <th>Description</th>
+            <th>Result</th>
+            <th>Opération</th>
+
+        </tr>
+        <tr th:each ="number : ${numbers}">
+            <td th:utext="${number.numberValue}">...</td>
+            <td th:utext="${number.state.description}">...</td>
+            <td th:utext="${number.resultLong}">...</td>
+            <td th:utext="${number.state}">...</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
