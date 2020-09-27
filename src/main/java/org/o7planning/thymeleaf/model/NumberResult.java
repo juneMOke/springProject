@@ -67,7 +67,7 @@ public class NumberResult {
 
     private  BigInteger fibonacci(BigInteger value) {
         this.state = State.FIBONACCI;
-        return value.compareTo(BigInteger.TWO) == -1 ? value : fibonacci(value.subtract(BigInteger.ONE) ).add(fibonacci(value.subtract(BigInteger.TWO)));
+        return value.compareTo(BigInteger.valueOf(2)) == -1 ? value : fibonacci(value.subtract(BigInteger.ONE) ).add(fibonacci(value.subtract(BigInteger.valueOf(2))));
 
 
     }
