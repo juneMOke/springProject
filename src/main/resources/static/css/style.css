@@ -3,13 +3,7 @@ h1 {
 }
 
 h2 {
-    color:#FF0000;
+
+    color:#00BFFF;
 }
 
-table {
-    border-collapse: collapse;
-}
-
-table th, table td {
-    padding: 5px;
-}

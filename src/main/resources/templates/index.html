@@ -2,23 +2,70 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
-    <title>Welcome</title>
+    <title>ISIFID Test</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
-<body>
-<h1>Welcome</h1>
-<h2 th:utext="${message}">..!..</h2>
+<body class="m-3">
+    <h1 > Test ISIFID </h1>
 
-<!--
+    <div class="border border-secondary rounded-left mt-3 mb-3">
+        <h2 class="p-3"> Description du projet </h2>
+        <p class="p-3">
+           Le projet permet la création d'un endpoint rest GET prenant en "PathVariable" un nombre x.
+            Le endpoint retournera :
+            <ul class="list-group">
+                <li class="list-group-item"> Un code http 400 si le nombre est négatif </li>
+                <li class="list-group-item"> Fibonacci si ce nombre est impair </li>
+                <li class="list-group-item"> La factorielle si ce nombre est pair et inférieur à 51 </li>
+                <li class="list-group-item"> Le nombre si ce nombre est pair et supérieur à 50 </li>
+            </ul>
 
-   In Thymeleaf the equivalent of
-   JSP's ${pageContext.request.contextPath}/edit.html
-   would be @{/edit.html}
+        </p>
 
-   -->
 
-<a th:href="@{/numberList}">Number List</a>
+    </div>
+    <div class="border border-secondary rounded-left mt-3 mb-3">
+        <h2 class="p-3">Saisie du nombre</h2>
 
+
+
+        <form class="p-3" th:action="@{/registerNumber}"
+              th:object="${numberForm}" method="POST">
+            Enter number:
+            <input type="number" th:field="*{numberValue}" placeholder="Entrer le nombre" required/>
+            <br/>
+            <input type="submit" value="ok" />
+        </form>
+
+    </div>
+
+    <div class="border border-secondary rounded-left mt-3 mb-3">
+        <h2 class="p-3"> Historique des Valeurs</h2>
+        <table class="m-3 w-50 table table-striped table-sm " border="1" >
+            <thead class="thead-dark">
+                <tr>
+                    <th>Number Value</th>
+                    <th>Description</th>
+                    <th>Result</th>
+                    <th>Opération</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each ="number : ${numbers}">
+                    <td th:utext="${number.numberValue}">...</td>
+                    <td th:utext="${number.state.description}">...</td>
+                    <td th:utext="${number.resultLong}">...</td>
+                    <td th:utext="${number.state}">...</td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
 </body>
 
 </html>
